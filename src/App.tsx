@@ -1,9 +1,32 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Block, Colorful, HsvaColor, hsvaToRgbaString } from "@uiw/react-color";
 import { predefinedColors } from "./util/predefinedColors";
 
+const defaultColor: HsvaColor = { h: 0, s: 0, v: 68, a: 1 };
 function App() {
-  const [hsva, setHsva] = useState<HsvaColor>({ h: 0, s: 0, v: 68, a: 1 });
+  const [hsva, setHsva] = useState<HsvaColor>(defaultColor);
+  useEffect(() => {
+    if (JSON.stringify(defaultColor) === JSON.stringify(hsva)) return;
+
+    if (typeof browser === "undefined") {
+      console.log(
+        "Extension is running in an unsupported environment. Browser namespace is undefined",
+      );
+      return;
+    }
+
+    const timeout = setTimeout(() => {
+      browser.theme.update({
+        colors: {
+          frame: hsvaToRgbaString(hsva),
+          tab_background_text: "#fff",
+        },
+      });
+    }, 300);
+
+    return () => clearTimeout(timeout);
+  }, [hsva]);
+
   return (
     <main className="min-h-screen p-10 max-w-96 mx-auto bg-[#a5a184] text-center">
       <h2>
