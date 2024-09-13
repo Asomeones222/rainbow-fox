@@ -1,0 +1,17 @@
+export const predefinedColors = [
+  "#CD5C5C",
+  "#F28C8F",
+  "#FF7F50",
+  "#FFFACD",
+  "#E6E6FA",
+  "#2D6072",
+  "#6A5ACD",
+  "#98FB98",
+  "#006400",
+  "#008B8B",
+  "#48D1CC",
+  "#87CEFA",
+  "#00008B",
+  "#DEB887",
+  "#8B4513",
+] as const;
