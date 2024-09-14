@@ -8,6 +8,7 @@ import {
 } from "@uiw/react-color";
 import { predefinedColors } from "./util/predefinedColors";
 import { getReadableTextColor } from "./util/getReadableTextColor";
+import { storeWindowsColors } from "./util/storeWindowsColors";
 
 const defaultColor: HsvaColor = { h: 0, s: 0, v: 68, a: 1 };
 function App() {
@@ -32,6 +33,11 @@ function App() {
           tab_background_text: getReadableTextColor(hsvaToRgba(hsva)),
         },
       });
+      try {
+        storeWindowsColors();
+      } catch (e) {
+        console.error(e);
+      }
     }, 800);
 
     return () => clearTimeout(timeout);
