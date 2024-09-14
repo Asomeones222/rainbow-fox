@@ -1,14 +1,8 @@
 import { useEffect, useState } from "react";
-import {
-  Block,
-  Colorful,
-  HsvaColor,
-  hsvaToRgba,
-  hsvaToRgbaString,
-} from "@uiw/react-color";
+import { Block, Colorful, HsvaColor, hsvaToRgbaString } from "@uiw/react-color";
 import { predefinedColors } from "./util/predefinedColors";
-import { getReadableTextColor } from "./util/getReadableTextColor";
 import { storeWindowsColors } from "./util/storeWindowsColors";
+import { setWindowColor } from "./util/setWinowColor";
 
 const defaultColor: HsvaColor = { h: 0, s: 0, v: 68, a: 1 };
 function App() {
@@ -27,13 +21,8 @@ function App() {
     }
 
     const timeout = setTimeout(() => {
-      browser.theme.update({
-        colors: {
-          frame: hsvaToRgbaString(hsva),
-          tab_background_text: getReadableTextColor(hsvaToRgba(hsva)),
-        },
-      });
       try {
+        setWindowColor(hsva);
         storeWindowsColors();
       } catch (e) {
         console.error(e);
