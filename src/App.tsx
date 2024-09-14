@@ -27,7 +27,7 @@ function App() {
       } catch (e) {
         console.error(e);
       }
-    }, 800);
+    }, 300);
 
     return () => clearTimeout(timeout);
   }, [hsva]);
@@ -47,19 +47,29 @@ function App() {
         color
       </h2>
       <div className="w-fit mx-auto">
-        <Colorful
+        <Block
+          colors={[...predefinedColors]}
           color={hsva}
-          disableAlpha
           onChange={(color) => {
             setHsva(color.hsva);
           }}
         />
       </div>
-      <h3>Or choose from here</h3>
+      <h3>
+        Or choose from{" "}
+        <span
+          className="px-4 rounded-md"
+          style={{
+            backgroundColor: hsvaToRgbaString(hsva),
+          }}
+        >
+          here
+        </span>
+      </h3>
       <div className="w-fit mx-auto">
-        <Block
-          colors={[...predefinedColors]}
+        <Colorful
           color={hsva}
+          disableAlpha
           onChange={(color) => {
             setHsva(color.hsva);
           }}

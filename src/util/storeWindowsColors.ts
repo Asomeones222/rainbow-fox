@@ -11,11 +11,11 @@ export const storeWindowsColors = async () => {
 
     // Color is returned in rgba format
     const color = (await browser.theme.getCurrent(w.id)).colors?.frame;
-    console.debug("storeWindowsColors color", color);
+    console.debug("storeWindowsColors color", w.id, color);
     if (typeof color !== "string") continue;
 
     const hsvaColor = rgbaStringToHsva(color);
-    console.debug("storeWindowsColors hsvaColor", hsvaColor);
+    console.debug("storeWindowsColors hsvaColor", w.id, hsvaColor);
 
     browser.sessions.setWindowValue(w.id, windowColorKey, hsvaColor);
   }
