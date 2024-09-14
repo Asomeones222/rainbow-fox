@@ -1,13 +1,13 @@
 import { HsvaColor, hsvaToRgba, hsvaToRgbaString } from "@uiw/react-color";
 import { getReadableTextColor } from "./getReadableTextColor";
 
-export const setWindowColor = async (hsva: HsvaColor) => {
-  const currentWindow = await browser.windows.getCurrent();
-  if (!currentWindow.id) {
-    console.error("Failed to set theme for current window", currentWindow);
+export const setWindowColor = async (hsva: HsvaColor, _windowId?: number) => {
+  const windowId = _windowId || (await browser.windows.getCurrent()).id;
+  if (!windowId) {
+    console.error("setWindowColor: Failed to set theme for window");
     return;
   }
-  browser.theme.update(currentWindow.id, {
+  browser.theme.update(windowId, {
     colors: {
       frame: hsvaToRgbaString(hsva),
       tab_background_text: getReadableTextColor(hsvaToRgba(hsva)),

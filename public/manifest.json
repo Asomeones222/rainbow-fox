@@ -11,13 +11,17 @@
     "default_popup": "/index.html"
   },
   "permissions": [
-    "storage",
     "theme",
     "sessions"
   ],
   "optional_permissions": [
     "*://*/"
   ],
+  "background": {
+    "scripts": [
+      "assets/index.js"
+    ]
+  },
   "browser_specific_settings": {
     "gecko": {
       "id": "asdfsadfadsfdsa@example.com",

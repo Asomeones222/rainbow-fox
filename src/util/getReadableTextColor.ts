@@ -23,5 +23,5 @@ export const getReadableTextColor = (rgb: RgbColor) => {
   const contrastWhite = 1.05 / (luminance + 0.05);
   const contrastBlack = (luminance + 0.05) / 0.05;
 
-  return contrastWhite >= contrastBlack ? "#FFFFFF" : "#000000";
+  return contrastWhite >= contrastBlack ? "#FFFFFF" : "#333333";
 };
