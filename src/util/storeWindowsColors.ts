@@ -1,21 +1,22 @@
-import { hexToHsva } from "@uiw/react-color";
-import { localStorageKey } from "../constants";
-import { ExtensionData } from "../types/data";
+import { rgbaStringToHsva } from "@uiw/react-color";
+import { windowColorKey } from "../constants";
 
 export const storeWindowsColors = async () => {
-  const data: ExtensionData = {
-    [localStorageKey]: {},
-  };
   const windows = await browser.windows.getAll();
-  for (const w of windows) {
-    if (!w.tabs) continue;
+  console.debug("storeWindowsColors windows", windows);
 
-    const key = w.tabs.map((tab) => tab.url).join(",");
+  for (const w of windows) {
+    if (!w.id) continue;
+    console.debug("storeWindowsColors w.id", w.id);
+
+    // Color is returned in rgba format
     const color = (await browser.theme.getCurrent(w.id)).colors?.frame;
+    console.debug("storeWindowsColors color", color);
     if (typeof color !== "string") continue;
 
-    data[localStorageKey][key] = hexToHsva(color);
+    const hsvaColor = rgbaStringToHsva(color);
+    console.debug("storeWindowsColors hsvaColor", hsvaColor);
+
+    browser.sessions.setWindowValue(w.id, windowColorKey, hsvaColor);
   }
-  console.debug("storeWindowsColors", data);
-  browser.storage.local.set(data);
 };

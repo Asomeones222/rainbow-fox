@@ -14,7 +14,8 @@
     "activeTab",
     "storage",
     "tabs",
-    "theme"
+    "theme",
+    "sessions"
   ],
   "optional_permissions": [
     "*://*/"
