@@ -98,7 +98,7 @@ function App() {
       </div>
       <div className="flex justify-between mt-20">
         <span title="Free Palestine">🇵🇸</span>
-        <a href="https://www.github.com" target="_blank">
+        <a href="https://github.com/Asomeones222/rainbow-fox" target="_blank">
           <span>Visit Page</span>
         </a>
       </div>
