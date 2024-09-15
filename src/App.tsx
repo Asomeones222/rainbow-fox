@@ -4,15 +4,33 @@ import { predefinedColors } from "./util/predefinedColors";
 import { storeWindowsColors } from "./util/storeWindowsColors";
 import { setWindowColor } from "./util/setWinowColor";
 import { getReadableTextColor } from "./util/getReadableTextColor";
+import { getCurrentWindowColor } from "./util/getCurrentWindowColor";
 
-const defaultColor: HsvaColor = { h: 0, s: 0, v: 68, a: 1 };
+const defaultColor: HsvaColor = { h: 203, s: 46, v: 98, a: 1 };
+
 function App() {
   const [hsva, setHsva] = useState<HsvaColor>(defaultColor);
+  const [currentWindowColor, setCurrentWindowColor] = useState<
+    HsvaColor | undefined
+  >();
+
+  useEffect(() => {
+    getCurrentWindowColor().then((color) => {
+      if (!color) return;
+      setHsva(color);
+      setCurrentWindowColor(color);
+    });
+  }, []);
+
   useEffect(() => {
     // Prevents setting to default color when opening the extension
     // it's kinda a bug because if someone selects exactly this color nothing will update
     // but what's the possibility of this?
-    if (JSON.stringify(defaultColor) === JSON.stringify(hsva)) return;
+    if (
+      JSON.stringify(defaultColor) === JSON.stringify(hsva) ||
+      JSON.stringify(hsva) === JSON.stringify(currentWindowColor)
+    )
+      return;
 
     if (typeof browser === "undefined") {
       console.log(
@@ -31,7 +49,7 @@ function App() {
     }, 300);
 
     return () => clearTimeout(timeout);
-  }, [hsva]);
+  }, [currentWindowColor, hsva]);
 
   return (
     <main className="min-h-screen p-10 pb-2 max-w-96 mx-auto bg-[#a5a184] text-center relative">
