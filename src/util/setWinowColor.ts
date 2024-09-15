@@ -1,4 +1,4 @@
-import { HsvaColor, hsvaToRgba, hsvaToRgbaString } from "@uiw/react-color";
+import { HsvaColor, hsvaToRgbaString } from "@uiw/react-color";
 import { getReadableTextColor } from "./getReadableTextColor";
 
 export const setWindowColor = async (hsva: HsvaColor, _windowId?: number) => {
@@ -10,7 +10,7 @@ export const setWindowColor = async (hsva: HsvaColor, _windowId?: number) => {
   browser.theme.update(windowId, {
     colors: {
       frame: hsvaToRgbaString(hsva),
-      tab_background_text: getReadableTextColor(hsvaToRgba(hsva)),
+      tab_background_text: getReadableTextColor(hsva),
     },
   });
 };

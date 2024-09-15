@@ -1,11 +1,5 @@
 import { useEffect, useState } from "react";
-import {
-  Block,
-  Colorful,
-  HsvaColor,
-  hsvaToRgba,
-  hsvaToRgbaString,
-} from "@uiw/react-color";
+import { Block, Colorful, HsvaColor, hsvaToRgbaString } from "@uiw/react-color";
 import { predefinedColors } from "./util/predefinedColors";
 import { storeWindowsColors } from "./util/storeWindowsColors";
 import { setWindowColor } from "./util/setWinowColor";
@@ -47,7 +41,7 @@ function App() {
           className="px-4 rounded-md"
           style={{
             backgroundColor: hsvaToRgbaString(hsva),
-            color: getReadableTextColor(hsvaToRgba(hsva)),
+            color: getReadableTextColor(hsva),
           }}
         >
           window
@@ -69,7 +63,7 @@ function App() {
           className="px-4 rounded-md"
           style={{
             backgroundColor: hsvaToRgbaString(hsva),
-            color: getReadableTextColor(hsvaToRgba(hsva)),
+            color: getReadableTextColor(hsva),
           }}
         >
           here

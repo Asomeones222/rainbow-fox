@@ -1,7 +1,8 @@
-import { RgbColor } from "@uiw/react-color";
+import { HsvaColor, hsvaToRgba } from "@uiw/react-color";
 
 // https://www.w3.org/TR/WCAG21/#dfn-contrast-ratio
-export const getReadableTextColor = (rgb: RgbColor) => {
+export const getReadableTextColor = (hsva: HsvaColor) => {
+  const rgb = hsvaToRgba(hsva);
   const { r, g, b } = rgb;
 
   const RsRGB = r / 255;
