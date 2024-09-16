@@ -18,7 +18,7 @@ Rainbow Fox is a Firefox extension that lets you customize the color of each Fir
 
 Rainbow Fox can be installed directly from the Firefox Add-ons store:
 
-1. Visit the [Rainbow Fox Firefox Add-on](#) page.
+1. Visit the [Rainbow Fox Firefox Add-on](https://addons.mozilla.org/en-GB/firefox/addon/rainbow-fox-addon/) page.
 2. Click on "Add to Firefox" to install the extension.
 3. Once installed, a new icon will appear in your toolbar. Click it to start customizing your windows.
 
