@@ -35,6 +35,18 @@ To use Rainbow Fox, simply:
 3. Your chosen color will apply immediately.
 4. The extension will remember your settings automatically.
 
+## Building
+
+To build Rainbow Fox from source:
+
+1. Clone the repository
+
+2. Navigate to the project directory: `cd rainbow-fox`
+
+3. Install dependencies: `npm install`
+
+4. Build the project: `npm run build`. This will build the project and run `web-ext build` at the same time. Make sure you have the [web-ext](https://github.com/mozilla/web-ext) installed
+
 ## Contributing
 
 Any contributions you make are **greatly appreciated**.
