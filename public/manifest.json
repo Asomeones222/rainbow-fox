@@ -1,12 +1,12 @@
 {
-  "manifest_version": 3,
+  "manifest_version": 2,
   "name": "Rainbow Fox",
   "description": "Change window color in Firefox",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "icons": {
     "48": "src/icons/icon-48.png"
   },
-  "action": {
+  "browser_action": {
     "default_title": "Index",
     "default_popup": "/index.html"
   },
@@ -21,7 +21,7 @@
   },
   "browser_specific_settings": {
     "gecko": {
-      "id": "ssss@example.com",
+      "id": "{9a1da5ea-f770-478d-8aee-cdeafd7a37a5}",
       "strict_min_version": "58.0"
     }
   }

@@ -6,7 +6,7 @@ import { setWindowColor } from "./util/setWinowColor";
 import { getReadableTextColor } from "./util/getReadableTextColor";
 import { getCurrentWindowColor } from "./util/getCurrentWindowColor";
 
-const defaultColor: HsvaColor = { h: 203, s: 46, v: 98, a: 1 };
+const defaultColor: HsvaColor = { h: 0, s: 0, v: 100, a: 1 };
 
 function App() {
   const [hsva, setHsva] = useState<HsvaColor>(defaultColor);
