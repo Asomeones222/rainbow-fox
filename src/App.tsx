@@ -27,7 +27,7 @@ function App() {
     // it's kinda a bug because if someone selects exactly this color nothing will update
     // but what's the possibility of this?
     if (
-      JSON.stringify(defaultColor) === JSON.stringify(hsva) ||
+      JSON.stringify(hsva) === JSON.stringify(defaultColor) ||
       JSON.stringify(hsva) === JSON.stringify(currentWindowColor)
     )
       return;
@@ -39,6 +39,7 @@ function App() {
       return;
     }
 
+    setCurrentWindowColor(hsva);
     const timeout = setTimeout(() => {
       try {
         setWindowColor(hsva);
