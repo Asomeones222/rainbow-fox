@@ -7,6 +7,11 @@ export const setWindowColor = async (hsva: HsvaColor, _windowId?: number) => {
     console.error("setWindowColor: Failed to set theme for window");
     return;
   }
+  console.debug(
+    `setWindowColor: Setting theme for window: ${windowId} to ${JSON.stringify(
+      hsva,
+    )}`,
+  );
   browser.theme.update(windowId, {
     colors: {
       frame: hsvaToRgbaString(hsva),

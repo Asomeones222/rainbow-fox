@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Block, Colorful, HsvaColor, hsvaToRgbaString } from "@uiw/react-color";
 import { predefinedColors } from "./util/predefinedColors";
 import { storeWindowsColors } from "./util/storeWindowsColors";
@@ -10,28 +10,16 @@ const defaultColor: HsvaColor = { h: 0, s: 0, v: 100, a: 1 };
 
 function App() {
   const [hsva, setHsva] = useState<HsvaColor>(defaultColor);
-  const [currentWindowColor, setCurrentWindowColor] = useState<
-    HsvaColor | undefined
-  >();
+  const currentWindowColor = useRef<HsvaColor | undefined>(undefined);
 
   useEffect(() => {
     getCurrentWindowColor().then((color) => {
       if (!color) return;
       setHsva(color);
-      setCurrentWindowColor(color);
     });
   }, []);
 
   useEffect(() => {
-    // Prevents setting to default color when opening the extension
-    // it's kinda a bug because if someone selects exactly this color nothing will update
-    // but what's the possibility of this?
-    if (
-      JSON.stringify(hsva) === JSON.stringify(defaultColor) ||
-      JSON.stringify(hsva) === JSON.stringify(currentWindowColor)
-    )
-      return;
-
     if (typeof browser === "undefined") {
       console.log(
         "Extension is running in an unsupported environment. Browser namespace is undefined",
@@ -39,9 +27,15 @@ function App() {
       return;
     }
 
-    setCurrentWindowColor(hsva);
+    if (
+      JSON.stringify(hsva) === JSON.stringify(currentWindowColor.current) ||
+      JSON.stringify(hsva) === JSON.stringify(defaultColor)
+    )
+      return;
+    console.debug("Setting color through useEffect hsva dep");
     const timeout = setTimeout(() => {
       try {
+        currentWindowColor.current = hsva;
         setWindowColor(hsva);
         storeWindowsColors();
       } catch (e) {
@@ -50,7 +44,7 @@ function App() {
     }, 300);
 
     return () => clearTimeout(timeout);
-  }, [currentWindowColor, hsva]);
+  }, [hsva]);
 
   return (
     <main className="min-h-screen p-10 pb-2 max-w-96 mx-auto bg-[#a5a184] text-center relative">

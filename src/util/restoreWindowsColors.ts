@@ -18,7 +18,13 @@ export const restoreWindowsColors = async () => {
       );
       console.debug("restoreWindowsColors colorValue", w.id, colorValue);
 
-      if (!colorValue || typeof colorValue === "string") continue;
+      if (!colorValue || typeof colorValue !== "object") continue;
+      console.debug(
+        "restoreWindowsColors colorValue defined",
+        w.id,
+        colorValue,
+      );
+
       const hsvaColor = colorValue as HsvaColor;
       setWindowColor(hsvaColor, w.id);
     } catch (error) {
