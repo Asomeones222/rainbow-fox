@@ -5,6 +5,7 @@ import { storeWindowsColors } from "./util/storeWindowsColors";
 import { setWindowColor } from "./util/setWinowColor";
 import { getReadableTextColor } from "./util/getReadableTextColor";
 import { getCurrentWindowColor } from "./util/getCurrentWindowColor";
+import { resetWindowColor } from "./util/resetWinowColor";
 
 const defaultColor: HsvaColor = { h: 0, s: 0, v: 100, a: 1 };
 
@@ -36,8 +37,9 @@ function App() {
     const timeout = setTimeout(() => {
       try {
         currentWindowColor.current = hsva;
-        setWindowColor(hsva);
-        storeWindowsColors();
+        setWindowColor(hsva).then(() => {
+          storeWindowsColors();
+        });
       } catch (e) {
         console.error(e);
       }
@@ -90,6 +92,23 @@ function App() {
             setHsva(color.hsva);
           }}
         />
+      </div>
+      <div className="w-fit mx-auto mt-14 shadow-lg">
+        <button
+          className="px-4 rounded-md"
+          style={{
+            backgroundColor: hsvaToRgbaString(hsva),
+            color: getReadableTextColor(hsva),
+          }}
+          onClick={() => {
+            setHsva(defaultColor);
+            resetWindowColor().then(() => {
+              storeWindowsColors();
+            });
+          }}
+        >
+          <p className="mb-0">Reset theme</p>
+        </button>
       </div>
       <div className="flex justify-between mt-20">
         <span title="Free Palestine">🇵🇸</span>
