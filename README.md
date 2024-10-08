@@ -39,13 +39,15 @@ To use Rainbow Fox, simply:
 
 To build Rainbow Fox from source:
 
-1. Clone the repository
+1. Make sure you have _Node 18_ or higher and _npm 10_ or higher
 
-2. Navigate to the project directory: `cd rainbow-fox`
+2. Clone the repository
 
-3. Install dependencies: `npm install`
+3. Navigate to the project directory: `cd rainbow-fox`
 
-4. Build the project: `npm run build`. This will build the project and run `web-ext build` at the same time. Make sure you have the [web-ext](https://github.com/mozilla/web-ext) installed
+4. Install dependencies: `npm install`
+
+5. Build the project: `npm run build`. This will build the project and run `web-ext build` at the same time. Make sure you have the [web-ext](https://github.com/mozilla/web-ext) installed
 
 ## Contributing
 
